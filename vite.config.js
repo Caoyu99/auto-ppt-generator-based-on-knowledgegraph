@@ -1,0 +1,35 @@
+const Path = require('path');
+const vuePlugin = require('@vitejs/plugin-vue')
+
+const { defineConfig } = require('vite');
+
+/**
+ * https://vitejs.dev/config
+ */
+const config = defineConfig({
+    root: Path.join(__dirname, 'src', 'renderer'),
+    publicDir: 'public',
+    server: {
+        port: 8080,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3001',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, '')
+            }
+        }
+    },
+    open: false,
+    build: {
+        outDir: Path.join(__dirname, 'build', 'renderer'),
+        emptyOutDir: true,
+    },
+    plugins: [vuePlugin()],
+    resolve: {
+        alias: {
+            '@': Path.resolve(__dirname, 'src/renderer')
+        }
+    }
+});
+
+module.exports = config;

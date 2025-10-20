@@ -1,0 +1,20 @@
+{
+    "err_no": 0,
+    "err_tips": "成功",
+    "data": [
+        {
+            "page_no": 1,
+            "title": "环境科学教案"
+        },
+        {
+            "page_no": 2,
+            "title": "环境科学教案part1",
+            "article": "有关环境科学的教学内容"
+        },
+        {
+            "page_no": 3,
+            "title": "环境科学教案part2",
+            "article": "有关环境科学的教学内容。"
+        }
+    ]
+}
