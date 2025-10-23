@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant "System" as Sys
+participant "OpenAI API" as API
+participant "ChatGPT Model" as Model
+
+User -> Sys: 输入纯文字数据
+Sys -> API: 发送请求获取知识图谱数据
+API -> Model: 请求处理自然语言输入
+Model --> API: 返回处理结果
+API --> Sys: 返回知识图谱数据
+Sys --> User: 返回知识图谱数据
+@enduml

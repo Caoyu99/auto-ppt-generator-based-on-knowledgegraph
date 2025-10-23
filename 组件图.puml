@@ -1,0 +1,23 @@
+@startuml
+title 组件图
+
+rectangle "客户端" as client {
+  component "知识图谱生成及可视化" as kg
+  component "教案自动生成" as pptx
+}
+
+rectangle "后端node.js" as backend {
+  component "openAI API" as openAI
+}
+
+database "chatGPT对话接口" as chatGPT
+
+client --> kg : 调用
+client --> pptx : 基于知识图谱调用
+client --> backend : 请求对话接口
+openAI --> chatGPT : 请求chatGPT对话
+chatGPT --> openAI : 返回chatGPT数据
+backend --> openAI : 请求语言模型
+openAI --> backend : 返回对话数据
+backend --> client : 返回知识图谱和教案数据
+@enduml

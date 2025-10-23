@@ -1,0 +1,36 @@
+@startuml
+title 基于知识图谱的教案自动生成系统时序图
+participant 用户 as user
+participant 客户端 as client
+participant "后端node.js" as server
+participant openAIAPI as API
+participant "chatGPT对话接口" as chatGPT
+
+note over user: 使用系统
+user->client: 上传纯文字资料
+activate client
+note over client: 分析处理数据
+client->server: 请求知识图谱和教案数据
+activate server
+note over server: 封装数据请求
+server->API: 调用openAI API
+activate API
+note over API: 提供对话接口
+API->chatGPT: 请求chatGPT对话
+
+
+activate chatGPT
+note over chatGPT: 处理对话请求
+chatGPT-->API: 返回对话数据
+deactivate chatGPT
+API-->server: 返回对话数据
+deactivate API
+note over server: 封装数据响应
+server-->client: 返回知识图谱数据和教案数据
+deactivate server
+note over client: 调用方法处理数据
+client-->user: 返回可视化
+deactivate client
+note over user: 收到结果
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+title 用户通过系统生成PPT文件
+
+actor 用户
+participant "系统" as system
+participant "openAI API" as api
+participant "chatGPT模型" as model
+
+note over 用户: 用户已获取到知识图谱
+用户 -> system: 发起PPT生成请求
+activate system
+note over system: 系统结合知识图谱和资料封装prompt
+system -> api: 调用openAI API接口
+
+api -> model: 请求chatGPT对话
+model --> api: 返回对话数据
+api --> system: 返回对话数据
+note over system: 系统分析和处理PPT数据
+system -> 用户: 返回PPT文件
+deactivate system
+note over 用户: 用户收到PPT文件
+@enduml
